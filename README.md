@@ -1,0 +1,37 @@
+## vagrant-php-dev-box
+
+### Creators of original version
+
+Created by [Evgeniy Kuzminov](http://stdout.in) and [Anton Logvinenko](http://anton.logvinenko.name/).
+
+## Out of the box
+
+* Ubuntu 14.10 64 bit ( + bulk of system soft like `mc`, `curl`, etc.)
+* PHP-FPM 5.5 ( + modules `intl`, `gd`, `xdebug` etc.)
+* Nginx 1.6
+* MySQL 5.5
+* Composer
+* Redis 2.8 ( + PhpRedis)
+* Local IP loop on Host machine `/etc/hosts` and Virtual hosts in Nginx already set up too !
+
+## Quick start
+
+### Install
+
+* [Virtualbox 4.3+](https://www.virtualbox.org/) + VirtualBox Extension Pack
+* [Vagrant 1.6+](http://www.vagrantup.com/)
+additional Vagrant modules (optional, but provide full automation) :
+
+* `vagrant plugin install vagrant-hostsupdater vagrant-vbguest vagrant-cachier`
+
+> You don't need to have Ansible installed on host machine. It will be installed on VM and self-provisioning will be launched. So it is possible to run everything on Windows machine. 
+
+### RUN
+
+* Clone this sources from Git
+* Run `vagrant up`.
+* It will start VM creation and Provisioning. Could take some time 15-30 min... Drink coffee and get back for complete virtual server with Yi2 project ready for play !
+
+#### Differences
+
+Removed yii2-app-advanced and all daily-unused components. Aspiration to create base php vagrant box.
