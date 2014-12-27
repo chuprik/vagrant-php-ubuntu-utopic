@@ -1,4 +1,4 @@
-## vagrant-php-dev-box
+## vagrant-php-ubuntu-utopic
 
 ### Creators of [original version](https://github.com/iJackUA/try-yii2)
 
@@ -11,7 +11,6 @@ Created by [Evgeniy Kuzminov](http://stdout.in) and [Anton Logvinenko](http://an
 * Nginx 1.6
 * MySQL 5.5
 * Composer
-* Redis 2.8 + php-redis
 * Local IP loop on Host machine `/etc/hosts` and Virtual hosts in Nginx already set up too !
 
 ## Quick start
@@ -21,7 +20,6 @@ Created by [Evgeniy Kuzminov](http://stdout.in) and [Anton Logvinenko](http://an
 * [Virtualbox 4.3+](https://www.virtualbox.org/) + VirtualBox Extension Pack
 * [Vagrant 1.6+](http://www.vagrantup.com/)
 additional Vagrant modules (optional, but provide full automation) :
-
 * `vagrant plugin install vagrant-hostsupdater vagrant-vbguest vagrant-cachier`
 * [Ansible](http://docs.ansible.com/intro_installation.html)
 
