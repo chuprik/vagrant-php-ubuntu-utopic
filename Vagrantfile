@@ -57,8 +57,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         # Don't boot with headless mode
         # vb.gui = true
         # Use VBoxManage to customize the VM. For example to change memory:
-        vb.customize ["modifyvm", :id, "--memory", "512"]
-        vb.customize ["modifyvm", :id, "--name", "TryYii2"]
+        vb.customize ["modifyvm", :id, "--memory", "1024"]
+        vb.customize ["modifyvm", :id, "--name", "vagrant-php-ubuntu-utopic"]
         vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
         vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
         # By default set to 1, change it to amount of your CPUs
@@ -72,8 +72,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # https://github.com/cogitatio/vagrant-hostsupdater
     if Vagrant.has_plugin?("vagrant-hostsupdater")
         config.hostsupdater.remove_on_suspend = true
-        config.vm.hostname = "yii2.local"
-        config.hostsupdater.aliases = ["admin.yii2.local","phpmyadmin.yii2.local","adminer.yii2.local"]
+        config.vm.hostname = "vagrant-php.local"
     end
 
     if Vagrant.has_plugin?("vagrant-cachier")
@@ -81,21 +80,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     #
-    # Pre-provisioning
-    # Install Ansible on the VM to run main provisioning from the VM itself
-    #
-    $script = <<SCRIPT
-        sudo apt-add-repository ppa:rquillo/ansible -y
-        sudo apt-get update -y
-        sudo apt-get install ansible -y
-SCRIPT
-
-    config.vm.provision "shell", inline: $script
-
-    #
     # Run Ansible provisioning inside the VM
     #
-    config.vm.provision "shell" do |sh|
-        sh.inline = "ansible-playbook /vagrant/provisioning/main.yml --inventory-file=/vagrant/provisioning/hosts --connection=local"
+    config.vm.provision "ansible" do |ansible|
+        ansible.limit = 'all'
+        ansible.playbook = "provisioning/main.yml"
+        ansible.inventory_path = "provisioning/hosts"
     end
 end

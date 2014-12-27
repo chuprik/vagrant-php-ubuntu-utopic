@@ -1,9 +1,9 @@
-- name: add nginx repository
-  apt_repository: repo='ppa:nginx/stable' state=present update_cache=yes
+- name: get latest Nginx build
+  apt_repository: repo='ppa:nginx/stable'
   tags: nginx
 
 - name: install Nginx
-  apt: pkg=nginx state=latest
+  apt: pkg=nginx state=latest update_cache=yes
   tags: nginx
 
 - name: configure Nginx Virtual hosts
@@ -23,5 +23,3 @@
   with_items: vhosts
   notify:
     - restart nginx
-
-

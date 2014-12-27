@@ -7,6 +7,4 @@
     - common
     - nginx
     - php
-    - redis
-    - phpredis
     - composer
